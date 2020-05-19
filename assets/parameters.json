@@ -1,0 +1,12 @@
+{
+    "seed": 1242151521,
+    "problem": "binary",
+    "algorithm": "nsgaii",
+    "explorerLength": 10,
+    "numberOfExplorer": 5,
+    "maxGeneValue": 50,
+    "numberOfMaps": 50,
+    "mapGranularity": 50,
+    "crossover": 0.7,
+    "mutation": 0.3
+}

@@ -1,0 +1,71 @@
+{
+    "metadata": {
+        "min": "14x14",
+        "max": "14x14"
+    },
+    "entities": [
+        "empty",
+        "solid"
+    ],
+    "neighborhoods": {
+        "allnc": "111,121,111",
+        "plusnc": "010,121,010",
+        "horzl": "000,131,000",
+        "vertl": "010,030,010",
+        "diag": "101,030,101",
+        "diagnc": "101,020,101",
+        "allfive": "11111,11111,11311,11111,11111",
+        "plusfive": "00100,00100,11311,00100,00100",
+        "diagfive": "10001,01010,00300,01010,10001"
+    },
+    "explorers": [
+        {
+            "type": "horz",
+            "region": "map",
+            "rules": [
+                "self(any) -> self(solid:1|empty:1)"
+            ]
+        },
+        {
+            "type": "connect",
+            "region": "map",
+            "parameters": {
+                "repeats": "1",
+                "replace": "buffer",
+                "directions": "plus",
+                "entities": "empty"
+            },
+            "rules": [
+                "self(any) -> vert(empty)"
+            ]
+        },
+        {
+            "type": "connect",
+            "region": "map",
+            "parameters": {
+                "repeats": "1",
+                "replace": "same",
+                "directions": "plus",
+                "entities": "empty"
+            },
+            "rules": [
+                "self(out) -> plusnc(solid|empty)"
+            ]
+        },
+        {
+            "type": "horz",
+            "region": "map",
+            "parameters": {
+                "repeats": "1",
+                "replace": "buffer",
+                "dirprob": "0.8",
+                "directions": "plus",
+                "entities": "empty",
+                "heuristics": "dist(out)"
+            },
+            "rules": [
+                "plusfive(empty) -> down(solid)"
+            ]
+        }
+    ]
+}

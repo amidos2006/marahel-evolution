@@ -1,0 +1,60 @@
+{
+	"metadata": {
+		"min": "11x7",
+		"max": "11x7"
+	},
+	"entities": [
+		"door",
+		"empty",
+		"enemy",
+		"key",
+		"player",
+		"solid"
+	],
+	"neighborhoods": {
+		"allnc": "111,121,111",
+		"plusnc": "010,121,010",
+		"horzl": "000,131,000",
+		"vertl": "010,030,010",
+		"diag": "101,030,101",
+		"diagnc": "101,020,101",
+		"allfive": "11111,11111,11311,11111,11111",
+		"plusfive": "00100,00100,11311,00100,00100",
+		"diagfive": "10001,01010,00300,01010,10001"
+	},
+	"explorers": [
+		{
+			"type": "horz",
+			"region": "map",
+			"rules": [
+				"self(any) -> self(solid:15|empty:30|player:1|enemy:5|key:1|door:1)"
+			]
+		},
+		{
+			"type": "greedy",
+			"region": "map",
+			"parameters": {
+				"repeats": "3",
+				"replace": "buffer",
+				"directions": "all",
+				"heuristics": "dist(empty)"
+			},
+			"rules": [
+				"diagfive(key) -> down(door)"
+			]
+		},
+		{
+			"type": "connect",
+			"region": "map",
+			"parameters": {
+				"repeats": "1",
+				"replace": "buffer",
+				"directions": "all",
+				"entities": "empty"
+			},
+			"rules": [
+				"noise>=-0.5  -> left(solid)"
+			]
+		}
+	]
+}

@@ -1,0 +1,46 @@
+{
+    "origin":["{\n\t#typeSec#\n\t#regionSec#\n\t#parametersSec#\n\t#rulesSec#\n}"],
+
+    "typeSec": ["\"type\":\"#explorerTypes#\","],
+    "explorerTypes": ["horz", "vert", "random", "digger", "connect", "connect", "connect", "greedy", "wide", "rorder"],
+
+    "regionSec": ["\"region\":\"map\","],
+
+    "parametersSec": ["\"parameters\": {\n\t\t\"repeats\":\"#sNumber#\",\n\t\t\"replace\":\"#replaceType#\",\n\t\t\"dirprob\":\"#fraction#\",\n\t\t\"directions\":\"#agentNeighborhood#\",\n\t\t\"entities\":\"empty\",\n\t\t\"heuristics\":\"#heuristics#\"#outType##changes#\n\t},\n"],
+    "replaceType":["same", "buffer"],
+    "heuristics":["#heuristics#,#hEstimator#", "#hEstimator#", "#hEstimator#", "#hEstimator#", "#hEstimator#"],
+    "outType":["", "", ",\n\t\t\"out\":\"#entity#\""],
+    "changes": ["", "", ",\n\t\t\"changes\":\"#numbersZ#\""],
+
+    "rulesSec": ["\"rules\": \\[\n#rules#\n\t\\]"],
+    "rules": ["#rules#,\n\t\t#rule#", "\t\t#rule#", "\t\t#rule#", "\t\t#rule#", "\t\t#rule#"],
+    "rule": ["\"#conditions# -> #executer#\""],
+
+    "conditions":["#conditions#, #condition#", "#condition#", "#condition#", "#condition#", "#condition#"],
+    "condition": ["#lEstimator##operatorE##rEstimator#", "#neighborhood#(#entityNames#)", "#randCondition#"],
+    "cEstimator":["dist(#entityNames#)", "#neighborhood#(#entityNames#)", "#neighborhood#(#entityNames#)"],
+    "lEstimator":["#cEstimator#", "#entity#", "self(any)", "dist(out)"],
+    "rEstimator": ["#cEstimator#", "#entity#", "#number#", "#number#", "#number#"],
+    "hEstimator":["#cEstimator#", "dist(out)"],
+    "randCondition":["random#operator##fraction#", "random#operator##fraction#", "noise#operator##negfraction#"],
+    "executer":["#neighborhood#(#entityNames#)"],
+
+    "operator": [">", "<", ">=", "<="],
+    "operatorE": ["#operator#", "==", "!="],
+    "neighborhood": ["all", "all", "allnc", "allnc", "plus", "plus", "plusnc", "plusnc", "diag", "diagnc", "allfive", "plusfive", "diagfive", "horz", "horzl", "vert", "vertl", "left", "right", "up", "down", "self", "self", "self", "self"],
+    "agentNeighborhood":["all", "plus"],
+    "entityNames": ["#entityNames#|#entity#", "#entity#", "#entity#", "#entity#", "#entity#"],
+    "number":["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
+        "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", 
+        "20", "21", "22", "23", "24", "25"],
+    "numbersZ": ["1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "1", "2", "3", "4", "5", "6", "7", "8", "9", 
+        "1", "2", "3", "4", "5", "6", "7", "8", "9", 
+        "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", 
+        "20", "21", "22", "23", "24", "25"],
+    "sNumber":["1", "1", "1", "1", "2", "2", "3", "4"],
+    "fraction": ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"],
+    "negfraction": ["#fraction#", "-#fraction#"]
+}

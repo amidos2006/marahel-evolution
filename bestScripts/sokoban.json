@@ -1,0 +1,62 @@
+{
+    "metadata": {
+        "min": "5x5",
+        "max": "5x5"
+    },
+    "entities": [
+        "crate",
+        "empty",
+        "player",
+        "solid",
+        "target"
+    ],
+    "neighborhoods": {
+        "allnc": "111,121,111",
+        "plusnc": "010,121,010",
+        "horzl": "000,131,000",
+        "vertl": "010,030,010",
+        "diag": "101,030,101",
+        "diagnc": "101,020,101",
+        "allfive": "11111,11111,11311,11111,11111",
+        "plusfive": "00100,00100,11311,00100,00100",
+        "diagfive": "10001,01010,00300,01010,10001"
+    },
+    "explorers": [
+        {
+            "type": "horz",
+            "region": "map",
+            "rules": [
+                "self(any) -> self(solid:8|empty:9|player:1|crate:1|target:1)"
+            ]
+        },
+        {
+            "type": "connect",
+            "region": "map",
+            "parameters": {
+                "repeats": "1",
+                "replace": "same",
+                "directions": "plus",
+                "entities": "empty",
+                "out": "crate",
+                "changes": "4"
+            },
+            "rules": [
+                "noise>0.3,up(player) -> up(target)",
+                "noise<=0.6, random>=0.5,vertl(crate) -> diag(empty)"
+            ]
+        },
+        {
+            "type": "connect",
+            "region": "map",
+            "parameters": {
+                "repeats": "1",
+                "replace": "same",
+                "directions": "plus",
+                "entities": "empty"
+            },
+            "rules": [
+                "allfive(empty) -> down(solid)"
+            ]
+        }
+    ]
+}
